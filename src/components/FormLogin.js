@@ -1,15 +1,17 @@
 import React from "react";
-import { View, Text, TextInput, Button, StyleSheet, TouchableHighlight } from "react-native";
+import { KeyboardAvoidingView, View, Image, Text, TextInput, Button, StyleSheet, TouchableHighlight } from "react-native";
 import { Actions } from "react-native-router-flux";
+import { connect } from "react-redux";
 
-export default props => (
-	<View style={styles.container}>
+const formLogin = props => (
+	<KeyboardAvoidingView behavior="padding" style={styles.container}>
 		<View style={styles.header}>
+			<Image style={styles.imgLogo} source={require("../../images/img-logo.png")} />
 			<Text style={styles.txtTitle}>WhatsApp Clone</Text>
 		</View>
 		<View style={styles.content}>
-			<TextInput style={styles.textInput} placeholder="E-mail" />
-			<TextInput style={styles.textInput} placeholder="Senha" />
+			<TextInput keyboardType="email-address" value={props.email} style={styles.textInput} placeholder="E-mail" />
+			<TextInput secureTextEntry value={props.senha} style={styles.textInput} placeholder="Senha" />
 			<TouchableHighlight onPress={() => Actions.formCadastro()}>
 				<Text style={styles.txtCadastro}>Ainda não tem um cadastro? Cadastre-se</Text>
 			</TouchableHighlight>
@@ -19,7 +21,7 @@ export default props => (
 				<Button style={styles.btnAcessar} title="Acessar" onPress={() => false} />
 			</View>
 		</View>
-	</View>
+	</KeyboardAvoidingView>
 )
 
 const styles = StyleSheet.create({
@@ -28,9 +30,13 @@ const styles = StyleSheet.create({
 		padding: 10
 	},
 	header: {
-		flex: 1,
+		flex: 3,
 		justifyContent: "center",
 		alignItems: "center"
+	},
+	imgLogo: {
+		width: 100,
+		height: 100
 	},
 	txtTitle: {
 		fontSize: 25
@@ -55,3 +61,10 @@ const styles = StyleSheet.create({
 		color: "#ffffff"
 	}
 });
+
+const mapStateToProps = state => ({ 
+	email: state.AutenticacaoReducer.email, 
+	senha: state.AutenticacaoReducer.senha
+})
+
+export default connect(mapStateToProps, null)(formLogin);
