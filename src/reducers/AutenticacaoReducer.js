@@ -1,9 +1,22 @@
 const INITIAL_STATE = {
-	nome: 'Vlamir Santo',
-	email: 'vlamirsanto@gmail.com',
-	senha: 'q1w2e3r4'
+	nome: '',
+	email: '',
+	senha: ''
 };
 
-export default (state = INITIAL_STATE, action) => {
-	return state;
+export default (state = INITIAL_STATE, action) => 
+{
+	switch( action.type ) {
+		case 'MODIFICA_EMAIL': 
+			return { ...state, email: action.payload };
+
+		case 'MODIFICA_SENHA':
+			return { ...state, senha: action.payload };
+
+		case 'MODIFICA_NOME':
+			return { ...state, nome: action.payload };
+
+		default:
+			return state;
+	}
 };

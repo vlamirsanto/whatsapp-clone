@@ -30,7 +30,10 @@ export default StyleSheet.create({
 		height: 45,
 		padding: 10,
 		backgroundColor: 'rgba(255,255,255,0.5)',
-		marginBottom: 10
+		marginBottom: 10,
+		borderRadius: 5,
+		borderColor: '#fff',
+		borderWidth: 1
 	},
 	txtCadastro: {
 		fontSize: 16,

@@ -3,6 +3,9 @@ import { KeyboardAvoidingView, View, Image, Text, TextInput, Button, TouchableOp
 import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
 
+// Actions Creators
+import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions';
+
 // Styles
 import styles from '../styles/FormLogin';
 
@@ -21,13 +24,15 @@ const formLogin = props => (
 					keyboardType="email-address" 
 					value={ props.email } 
 					style={ styles.textInput } 
-					placeholder="E-mail" 
+					placeholder="E-mail"
+					onChangeText={ email => props.modificaEmail(email) }
 				/>
 				<TextInput 
 					secureTextEntry 
 					value={ props.senha } 
 					style={ styles.textInput } 
-					placeholder="Senha" 
+					placeholder="Senha"
+					onChangeText={ senha => props.modificaSenha(senha) }
 				/>
 				<TouchableOpacity onPress={ () => Actions.formCadastro() }>
 					<Text style={ styles.txtCadastro }>Ainda não tem um cadastro? Cadastre-se</Text>
@@ -52,4 +57,4 @@ const mapStateToProps = state => ({
 	senha: state.AutenticacaoReducer.senha
 })
 
-export default connect(mapStateToProps, null)(formLogin);
+export default connect(mapStateToProps, { modificaEmail, modificaSenha })(formLogin);
