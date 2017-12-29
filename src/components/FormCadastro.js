@@ -1,41 +1,49 @@
 import React from "react";
-import { View, TextInput, Button, StyleSheet } from "react-native";
+import { View, TextInput, Button, ImageBackground } from "react-native";
+import { connect } from 'react-redux';
 
-export default props => (
-	<View style={styles.container}>
-		<View style={styles.content}>
-			<TextInput style={styles.textInput} placeholder="Nome" />
-			<TextInput style={styles.textInput} placeholder="E-mail" />
-			<TextInput style={styles.textInput} placeholder="Senha" />
-		</View>
-		<View style={styles.footer}>
-			<View style={styles.viewAcessar}>
-				<Button style={styles.btnAcessar} title="Acessar" onPress={() => false} />
+// Styles
+import styles from '../styles/FormCadastro';
+
+const formCadastro = props => (
+	<ImageBackground style={ styles.backgroundImage } source={ require('../../images/bg.png') }>
+		<View style={ styles.container }>
+			<View style={ styles.content }>
+				<TextInput 
+					value={ props.nome }
+					style={ styles.textInput } 
+					placeholder="Nome" 
+				/>
+				<TextInput 
+					value={ props.email }
+					style={ styles.textInput } 
+					placeholder="E-mail" 
+				/>
+				<TextInput 
+					secureTextEntry
+					value={ props.senha }
+					style={ styles.textInput } 
+					placeholder="Senha" 
+				/>
+			</View>
+			<View style={ styles.footer }>
+				<View style={ styles.viewAcessar }>
+					<Button 
+						style={ styles.btnAcessar } 
+						title="Acessar" 
+						onPress={ () => false } 
+					/>
+				</View>
 			</View>
 		</View>
-	</View>
-)
+	</ImageBackground>
+);
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		padding: 10
-	},
-	content: {
-		flex: 4,
-		justifyContent: "center"
-	},
-	textInput: {
-		fontSize: 20,
-		height: 45
-	},
-	footer: {
-		flex: 1
-	},
-	viewAcessar: {
-		backgroundColor: "#115E54"
-	},
-	btnAcessar: {
-		color: "#ffffff"
-	}
+// Mapeando as variáveis de estado como props do componente
+const mapStateToProps = state => ({
+	nome: state.AutenticacaoReducer.nome,
+	email: state.AutenticacaoReducer.email,
+	senha: state.AutenticacaoReducer.senha
 });
+
+export default connect(mapStateToProps, null)(formCadastro);
