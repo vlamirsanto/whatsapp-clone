@@ -28,7 +28,15 @@ export default StyleSheet.create({
 	viewAcessar: {
 		backgroundColor: "#115E54"
 	},
-	btnAcessar: {
-		color: "#ffffff"
+	containerError: {
+		backgroundColor: "rgba(255,255,255,0.5)",
+		padding: 10
+	},
+	textError: {
+		color: 'red',
+		fontSize: 16,
+		textAlign: 'center',
+		fontWeight: 'bold',
+		backgroundColor: 'transparent'
 	}
 });

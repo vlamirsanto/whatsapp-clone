@@ -41,7 +41,7 @@ const formLogin = props => (
 			<View style={ styles.footer }>
 				<View style={ styles.viewAcessar }>
 					<Button 
-						style={ styles.btnAcessar } 
+						color="#ffffff"
 						title="Acessar" 
 						onPress={ () => false } 
 					/>

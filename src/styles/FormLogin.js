@@ -44,9 +44,6 @@ export default StyleSheet.create({
 		flex: 2
 	},
 	viewAcessar: {
-		backgroundColor: "#115E54"
-	},
-	btnAcessar: {
-		color: "#ffffff"
+		backgroundColor: "#115E54",
 	}
 });
