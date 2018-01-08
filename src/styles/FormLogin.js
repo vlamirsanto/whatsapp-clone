@@ -1,3 +1,9 @@
+/**
+ * Estilo do componente FormLogin
+ * 
+ * @author Vlamir Santo
+ * @since 05/01/2018
+ */
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({

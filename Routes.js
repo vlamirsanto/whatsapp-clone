@@ -1,3 +1,9 @@
+/**
+ * Rotas da aplicação
+ * 
+ * @author Vlamir Santo
+ * @since 05/01/2018
+ */
 import React from "react";
 import { Router, Scene } from "react-native-router-flux";
 

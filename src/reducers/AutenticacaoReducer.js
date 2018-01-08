@@ -1,5 +1,5 @@
 /**
- * Reducer de autenticação do usuário
+ * Reducer de autenticação de usuário
  * 
  * @author Vlamir Santo
  * @since 05/01/2018

@@ -1,3 +1,9 @@
+/**
+ * Formulário de Login
+ * 
+ * @author Vlamir Santo
+ * @since 08/01/2018
+ */
 import React from "react";
 import { KeyboardAvoidingView, View, Image, Text, TextInput, Button, TouchableOpacity, ImageBackground } from "react-native";
 import { Actions } from "react-native-router-flux";
@@ -10,7 +16,10 @@ import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions';
 import styles from '../styles/FormLogin';
 
 const formLogin = props => (
-	<ImageBackground style={ styles.backgroundImage } source={ require('../../images/bg.png') }>
+	<ImageBackground 
+		style={ styles.backgroundImage } 
+		source={ require('../../images/bg.png') }
+	>
 		<KeyboardAvoidingView behavior="padding" style={ styles.container }>
 			<View style={ styles.header }>
 				<Image 
@@ -57,4 +66,11 @@ const mapStateToProps = state => ({
 	senha: state.AutenticacaoReducer.senha
 })
 
-export default connect(mapStateToProps, { modificaEmail, modificaSenha })(formLogin);
+// Conectando aos reducers
+export default connect(
+	mapStateToProps, 
+	{ 
+		modificaEmail, 
+		modificaSenha 
+	}
+)(formLogin);

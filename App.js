@@ -1,9 +1,9 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
+ * Arquivo inicial da aplicação
+ * 
+ * @author Vlamir Santo
+ * @since 05/01/2018
  */
-
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';

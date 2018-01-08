@@ -1,3 +1,9 @@
+/**
+ * Formulário de Cadastro
+ * 
+ * @author Vlamir Santo
+ * @since 08/01/2018
+ */
 import React, { Component } from "react";
 import { View, Text, TextInput, Button, ImageBackground } from "react-native";
 import { connect } from 'react-redux';
@@ -9,7 +15,6 @@ import { modificaEmail, modificaNome, modificaSenha, cadastraUsuario } from '../
 import styles from '../styles/FormCadastro';
 
 class formCadastro extends Component {
-
 	_cadastraUsuario() {
 		const { nome, email, senha } = this.props;
 		this.props.cadastraUsuario({
@@ -19,7 +24,10 @@ class formCadastro extends Component {
 
 	render() {
 		return (
-			<ImageBackground style={ styles.backgroundImage } source={ require('../../images/bg.png') }>
+			<ImageBackground 
+				style={ styles.backgroundImage } 
+				source={ require('../../images/bg.png') }
+			>
 				<View style={ styles.container }>
 					<View style={ styles.content }>
 						<TextInput 
@@ -72,4 +80,13 @@ const mapStateToProps = state => ({
 	erroCadastro: state.AutenticacaoReducer.erroCadastro
 });
 
-export default connect(mapStateToProps, { modificaEmail, modificaNome, modificaSenha, cadastraUsuario })(formCadastro);
+// Conectando aos reducers
+export default connect(
+	mapStateToProps, 
+	{ 
+		modificaEmail, 
+		modificaNome, 
+		modificaSenha, 
+		cadastraUsuario 
+	}
+)(formCadastro);

@@ -1,3 +1,9 @@
+/**
+ * Actions de autenticação de usuário
+ * 
+ * @author Vlamir Santo
+ * @since 08/01/2018
+ */
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 
@@ -34,14 +40,17 @@ export const cadastraUsuario = ({ nome, email, senha }) => {
   }
 }
 
+// Função para disparar o sucesso do cadastro
 const cadastroUsuarioSucesso = (dispatch) => {
   dispatch ({
     type: 'CADASTRA_USUARIO_SUCESSO'
   });
 
+  // Carregando a tela de boas vindas
   Actions.boasVindas();
 }
 
+// Função para disparar o erro do cadastro
 const cadastroUsuarioErro = (error, dispatch) => {
   dispatch ({
     type: 'CADASTRA_USUARIO_ERRO',
