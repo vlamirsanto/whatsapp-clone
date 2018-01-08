@@ -6,6 +6,7 @@
  */
 import React, { Component } from "react";
 import { View, Text, TextInput, Button, ImageBackground } from "react-native";
+import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
 // Actions Creators
@@ -29,6 +30,9 @@ class formCadastro extends Component {
 				source={ require('../../images/bg.png') }
 			>
 				<View style={ styles.container }>
+					<View style={ styles.header }>
+						<Text style={ styles.txtTitle }>Cadastre-se</Text>
+					</View>
 					<View style={ styles.content }>
 						<TextInput 
 							value={ this.props.nome }
@@ -58,11 +62,18 @@ class formCadastro extends Component {
 						: <Text style={ styles.textError }></Text> }
 					</View>
 					<View style={ styles.footer }>
-						<View style={ styles.viewAcessar }>
+						<View style={ styles.viewActions }>
 							<Button 
 								color="#ffffff"
-								title="Acessar" 
+								title="Salvar" 
 								onPress={ () => this._cadastraUsuario() } 
+							/>
+						</View>
+						<View style={ styles.viewActions }>
+							<Button
+								color="#ffffff"
+								title="Voltar"
+								onPress={ () => Actions.pop() }
 							/>
 						</View>
 					</View>

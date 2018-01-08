@@ -10,12 +10,23 @@ export default StyleSheet.create({
 	backgroundImage: {
 		flex: 1
 	},
+	header: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
 	container: {
 		flex: 1,
 		padding: 20
 	},
+	txtTitle: {
+		fontSize: 20,
+		backgroundColor: 'transparent',
+		color: '#ffffff',
+		fontWeight: 'bold'
+	},
 	content: {
-		flex: 4,
+		flex: 2,
 		justifyContent: "center"
 	},
 	textInput: {
@@ -31,8 +42,9 @@ export default StyleSheet.create({
 	footer: {
 		flex: 1
 	},
-	viewAcessar: {
-		backgroundColor: "#115E54"
+	viewActions: {
+		backgroundColor: "#115E54",
+		marginBottom: 20		
 	},
 	containerError: {
 		backgroundColor: "rgba(255,255,255,0.5)",

@@ -15,9 +15,24 @@ import BoasVindas from "./src/components/BoasVindas";
 export default props => (
 	<Router>
 		<Scene key="root">
-			<Scene key="formLogin" component={ FormLogin } hideNavBar title="Login" />
-			<Scene key="formCadastro" component={ FormCadastro } title="Cadastro" />
-			<Scene key="boasVindas" component={ BoasVindas } hideNavBar title="Boas Vindas" />
+			<Scene 
+				key="formLogin" 
+				component={ FormLogin } 
+				title="Login"
+				hideNavBar 
+			/>
+			<Scene 
+				key="formCadastro"
+				component={ FormCadastro }
+				title="Cadastro"
+				hideNavBar
+			/>
+			<Scene 
+				key="boasVindas" 
+				component={ BoasVindas } 
+				title="Boas Vindas" 
+				hideNavBar 
+			/>
 		</Scene>
 	</Router>
 );
