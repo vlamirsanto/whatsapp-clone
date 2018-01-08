@@ -30,6 +30,8 @@ export default (state = INITIAL_STATE, action) =>
 				return { ...state, erroCadastro: 'Sem conexão com a internet!' };
 			else if ( action.payload.code == 'auth/email-already-in-use' )
 				return { ...state, erroCadastro: 'E-mail usado por outra conta!' };
+			else if( action.payload.code == 'auth/weak-password' )
+				return { ...state, erroCadastro: 'Sua senha deve conter no mínimo 6 caracteres.' };
 			else
 				return { ...state, erroCadastro: action.payload.message };
 
