@@ -6,6 +6,7 @@
  */
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
+import b64 from 'base-64';
 
 // Action para modificar o email
 export const modificaEmail = ( email ) => {
@@ -31,11 +32,48 @@ export const modificaNome = ( nome ) => {
   }
 }
 
+// Action para login de usuário
+export const autenticarUsuario = ({ email, senha }) => {
+  return dispatch => {
+    firebase.auth().signInWithEmailAndPassword(email, senha)
+      .then( res => loginUsuarioSucesso(dispatch) )
+      .catch( error => loginUsuarioErro(error, dispatch) );
+  }
+}
+
+// Função para disparar o sucesso do login
+const loginUsuarioSucesso = (dispatch) => {
+  dispatch({
+    type: 'LOGIN_USUARIO_SUCESSO'
+  });
+
+  // Carregando a tela Principal
+  Actions.principal();
+}
+
+// Função para disparar o erro do login
+const loginUsuarioErro = (error, dispatch) => {
+  console.log(error);
+
+  dispatch({
+    type: 'LOGIN_USUARIO_ERRO',
+    payload: error
+  });
+}
+
 // Action para cadastro de usuário
 export const cadastraUsuario = ({ nome, email, senha }) => {
   return dispatch => {
     firebase.auth().createUserWithEmailAndPassword(email, senha)
-      .then( user => cadastroUsuarioSucesso(dispatch) )
+      .then( user => {
+        // Salvando o nome do usuário no DATABASE
+        // email (base64) como chave
+        let emailB64 = b64.encode(email);
+        firebase.database().ref(`/contatos/${emailB64}`) // interpolação de strings
+          .push({ nome })
+          .then(value => cadastroUsuarioSucesso(dispatch) )
+          .catch();
+      })
       .catch( error => cadastroUsuarioErro(error, dispatch) );
   }
 }
