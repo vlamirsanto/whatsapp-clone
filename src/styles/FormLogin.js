@@ -15,7 +15,7 @@ export default StyleSheet.create({
 		padding: 20
 	},
 	header: {
-		flex: 3,
+		flex: 2,
 		justifyContent: "center",
 		alignItems: "center"
 	},
@@ -47,9 +47,21 @@ export default StyleSheet.create({
 		backgroundColor: 'transparent'
 	},
 	footer: {
-		flex: 2
+		flex: 1
 	},
 	viewAcessar: {
 		backgroundColor: "#115E54",
+	},
+	containerError: {
+		backgroundColor: "rgba(255,255,255,0.5)",
+		padding: 10,
+		marginBottom: 10
+	},
+	textError: {
+		color: 'red',
+		fontSize: 16,
+		textAlign: 'center',
+		fontWeight: 'bold',
+		backgroundColor: 'transparent'
 	}
 });

@@ -8,7 +8,8 @@ const INITIAL_STATE = {
 	nome: '',
 	email: '',
 	senha: '',
-	erroCadastro: ''
+	erroCadastro: '',
+	erroLogin: ''
 };
 
 export default (state = INITIAL_STATE, action) => 
@@ -22,6 +23,14 @@ export default (state = INITIAL_STATE, action) =>
 
 		case 'MODIFICA_NOME':
 			return { ...state, nome: action.payload };
+
+		case 'LOGIN_USUARIO_ERRO':
+			if( action.payload.code == 'auth/invalid-email' )
+				return { ...state, erroLogin: 'Informe um e-mail válido!' };
+			else if( action.payload.code == 'auth/wrong-password' )
+				return { ...state, erroLogin: 'A senha informada é inválida!' };
+			else
+				return { ...state, erroLogin: action.payload.message };
 
 		case 'CADASTRA_USUARIO_ERRO':
 			if( action.payload.code == 'auth/invalid-email' )
