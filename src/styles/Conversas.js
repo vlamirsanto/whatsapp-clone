@@ -1,13 +1,13 @@
 /**
- * Estilo do componente Principal
+ * Estilo do componente Conversas
  * 
  * @author Vlamir Santo
- * @since 09/01/2018
+ * @since 10/01/2018
  */
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  container: {
-    flex: 1
-  }
+	container: {
+		flex: 1
+  },
 });

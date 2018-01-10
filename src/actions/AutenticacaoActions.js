@@ -7,11 +7,22 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import b64 from 'base-64';
+import { 
+  MODIFICA_EMAIL, 
+  MODIFICA_NOME, 
+  MODIFICA_SENHA, 
+  CADASTRA_USUARIO_ERRO, 
+  CADASTRA_USUARIO_SUCESSO, 
+  LOGIN_USUARIO_ERRO,
+  LOGIN_USUARIO_SUCESSO,
+  LOGIN_ANDAMENTO,
+  CADASTRO_ANDAMENTO
+} from './types';
 
 // Action para modificar o email
 export const modificaEmail = ( email ) => {
   return {
-    type: 'MODIFICA_EMAIL',
+    type: MODIFICA_EMAIL,
     payload: email
   }
 }
@@ -19,7 +30,7 @@ export const modificaEmail = ( email ) => {
 // Action para modificar a senha
 export const modificaSenha = ( senha ) => {
   return {
-    type: 'MODIFICA_SENHA',
+    type: MODIFICA_SENHA,
     payload: senha
   } 
 }
@@ -27,7 +38,7 @@ export const modificaSenha = ( senha ) => {
 // Action para modificar o nome
 export const modificaNome = ( nome ) => {
   return {
-    type: 'MODIFICA_NOME',
+    type: MODIFICA_NOME,
     payload: nome
   }
 }
@@ -35,6 +46,8 @@ export const modificaNome = ( nome ) => {
 // Action para login de usuário
 export const autenticarUsuario = ({ email, senha }) => {
   return dispatch => {
+    dispatch({ type: LOGIN_ANDAMENTO });
+
     firebase.auth().signInWithEmailAndPassword(email, senha)
       .then( res => loginUsuarioSucesso(dispatch) )
       .catch( error => loginUsuarioErro(error, dispatch) );
@@ -44,7 +57,7 @@ export const autenticarUsuario = ({ email, senha }) => {
 // Função para disparar o sucesso do login
 const loginUsuarioSucesso = (dispatch) => {
   dispatch({
-    type: 'LOGIN_USUARIO_SUCESSO'
+    type: LOGIN_USUARIO_SUCESSO
   });
 
   // Carregando a tela Principal
@@ -53,10 +66,8 @@ const loginUsuarioSucesso = (dispatch) => {
 
 // Função para disparar o erro do login
 const loginUsuarioErro = (error, dispatch) => {
-  console.log(error);
-
   dispatch({
-    type: 'LOGIN_USUARIO_ERRO',
+    type: LOGIN_USUARIO_ERRO,
     payload: error
   });
 }
@@ -64,6 +75,8 @@ const loginUsuarioErro = (error, dispatch) => {
 // Action para cadastro de usuário
 export const cadastraUsuario = ({ nome, email, senha }) => {
   return dispatch => {
+    dispatch({ type: CADASTRO_ANDAMENTO });
+
     firebase.auth().createUserWithEmailAndPassword(email, senha)
       .then( user => {
         // Salvando o nome do usuário no DATABASE
@@ -81,7 +94,7 @@ export const cadastraUsuario = ({ nome, email, senha }) => {
 // Função para disparar o sucesso do cadastro
 const cadastroUsuarioSucesso = (dispatch) => {
   dispatch ({
-    type: 'CADASTRA_USUARIO_SUCESSO'
+    type: CADASTRA_USUARIO_SUCESSO
   });
 
   // Carregando a tela de boas vindas
@@ -91,7 +104,7 @@ const cadastroUsuarioSucesso = (dispatch) => {
 // Função para disparar o erro do cadastro
 const cadastroUsuarioErro = (error, dispatch) => {
   dispatch ({
-    type: 'CADASTRA_USUARIO_ERRO',
+    type: CADASTRA_USUARIO_ERRO,
     payload: error
   });
 }
